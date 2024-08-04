@@ -1,43 +1,25 @@
-version: '3.8'
 
 services:
   app:
-    image: your-app-image:latest
+    image: openjdk:21-jdk-slim
     ports:
       - "8080:8080"
     environment:
-      # Zmienna do przełączania między dev i prod
-      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
-      # Zmienne środowiskowe dla bazy danych
-      - DB_URL=${DB_URL}
-      - DB_USERNAME=${DB_USERNAME}
-      - DB_PASSWORD=${DB_PASSWORD}
+        SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}
+        DB_URL: ${DB_URL}
+        DB_USERNAME: ${DB_USERNAME}
+        DB_PASSWORD: ${DB_PASSWORD}
     depends_on:
       - dev-db
       - prod-db
-
-  dev-db:
+  prod-db:
     image: postgres:latest
     environment:
       POSTGRES_DB: dev-db
-      POSTGRES_USER: ss
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: ss
     ports:
       - "5433:5432"
     volumes:
       - dev-db-data:/var/lib/postgresql/data
 
-  prod-db:
-    image: postgres:latest
-    environment:
-      POSTGRES_DB: prod-db
-      POSTGRES_USER: ss
-      POSTGRES_PASSWORD: ss
-    ports:
-      - "5434:5432"
-    volumes:
-      - prod-db-data:/var/lib/postgresql/data
-
-volumes:
-  dev-db-data:
-  prod-db-data:

@@ -12,7 +12,7 @@
 	<artifactId>uslugi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>uslugi</name>
-	<description>Uslugi</description>
+	<description>uslugi</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -27,7 +27,7 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>22</java.version>
+		<java.version>21</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
